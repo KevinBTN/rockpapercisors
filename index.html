@@ -1,60 +1,18 @@
 <!DOCTYPE html>
 <html lang="eng">
-        <meta charset="utf-8"/>
+    <meta charset="utf-8"/>
+    <link rel ="stylesheet" type = "text/css" href ="style.css">
+    <body>
+        <header><h1>ROCK PAPER SCISSORS</h1> </header>
+        <div>
+                <h3>CHOOSE YOUR WEAPON</h3>
+        </div>
+        <div id="icones">
+            <img id="rock" class="icone" src="rock.png" alt="ROCK">
+            <img id="paper" class="icone" src="paper.png" alt="PAPER">
+            <img id="scissors" class="icone" src="scissors.png" alt="SCISSORS">
+        </div>
+    </body>
 
-<script>
-    //get Input
-    function playerProp(){
-    var proposition = prompt("enter proposition");
-    var lowerProposition = proposition.toLowerCase(); 
-    var playerNumber = 0;
-    if(lowerProposition == "rock"){
-        playerNumber = 1;
-    }
-    else if(lowerProposition == "paper"){
-        playerNumber = 2; 
-    }
-    else if(lowerProposition == "scissors"){
-        playerNumber = 3;
-    }
-    return playerNumber; 
-    }
-    //random answer
-    function getRandomInteger(min, max){
-    var rand = Math.floor(Math.random() * (max - min)) + min;
-    var computerAnswer;
-    return rand;
-    }
-
-    //compare
-    function compare(num1, num2){
-        if(num1 === num2){
-            window.prompt("Draw");
-        }
-        else if(num1 == 1 && num2 == 3){
-           console.log("You win, Rock beats the Scissors");
-        }
-        else if(num1 == 1 && num2 == 2 ){
-           console.log("You lose, Paper beats the rock");
-        }
-        else if(num1 == 2 && num2 == 1){
-          console.log("You win, Paper beats the Rock");
-        }
-        else if(num1 == 2 && num2 == 3){
-           console.log("You lose, Scissors beats the Paper");
-        }
-        else if(num1 == 3 && num2 == 1){
-           console.log("You lose, Rock beats the Scissors");
-        }
-        else if(num1 == 3 && num2 == 2){
-           console.log("You win, Scissors beats the Paper");
-        }
-    }
-
-    
-    //show winner
-    compare(playerProp(), getRandomInteger(1, 4));
-    
-
-</script>
+<script src="script.js"></script>
 </html>

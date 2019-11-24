@@ -1,0 +1,39 @@
+body{
+    
+    margin: auto; 
+    text-align: center;
+    
+}
+h1{
+    padding: 25px;
+}
+h3{
+    padding: 25px;
+}
+#icones{
+    
+}
+.icone{
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    margin-left: 25px;
+}
+#rock{
+    
+}
+#paper{
+    
+}
+#scissors{
+    
+}
+.icone:hover{
+    border: 2px solid;
+    border-color: black;
+    cursor: pointer;
+}
+
+h1{
+    color: blue;
+}
