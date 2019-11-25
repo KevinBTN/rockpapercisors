@@ -30,30 +30,31 @@
     }
 
     //compare
+    const h3 = document.querySelector('h3');
     function compare(num1, num2){
         if(num1 === num2){
-            console.log("Draw");
+            h3.textContent = "Draw";
         }
         else if(num1 == 1 && num2 == 3){
-           console.log("You win, Rock beats the Scissors");
+           h3.textContent = "You win, Rock beats the Scissors";
         }
         else if(num1 == 1 && num2 == 2 ){
-           console.log("You lose, Paper beats the rock");
+           h3.textContent = "You lose, Paper beats the rock";
         }
         else if(num1 == 2 && num2 == 1){
-          console.log("You win, Paper beats the Rock");
+          h3.textContent = "You win, Paper beats the Rock";
         }
         else if(num1 == 2 && num2 == 3){
-           console.log("You lose, Scissors beats the Paper");
+           h3.textContent = "You lose, Scissors beats the Paper";
         }
         else if(num1 == 3 && num2 == 1){
-           console.log("You lose, Rock beats the Scissors");
+           h3.textContent = "You lose, Rock beats the Scissors";
         }
         else if(num1 == 3 && num2 == 2){
-           console.log("You win, Scissors beats the Paper");
+           h3.textContent = "You win, Scissors beats the Paper";
         }
     }
 
     
-    //show winner
+    
     
