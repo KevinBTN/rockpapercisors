@@ -1,59 +1,108 @@
-//get Input
-    
-        const rock = document.querySelector('#rock');
-        rock.addEventListener('click', () =>{
-            compare(playerProp(1), getRandomInteger(1, 4));
-        });
-    
-    
-        const paper = document.querySelector('#paper');
-        paper.addEventListener('click', () =>{
-            compare(playerProp(2), getRandomInteger(1, 4));
-        });
-    
-    
-        const scissors = document.querySelector('#scissors');
-        scissors.addEventListener('click', () => {
-            compare(playerProp(3), getRandomInteger(1, 4));
-        });
-    
-    function playerProp(num){
-        var playerNumber = num; 
+//Game init
+var roundsButton = document.createElement("button");
+var roundsInput = document.createElement("input");
+roundsInput.setAttribute("id", "input");
+var selectedRoundsNumber = 0;
+var roundParent = document.getElementById("rounds");
+var displayRounds = document.createElement("p");
+var h3 = document.querySelector("h3");
+var icones = document.getElementById("icones");
+var imgRock = document.createElement("img");
+imgRock.src = "rock.png";
+imgRock.classList.add("icone");
+imgRock.setAttribute("id", "rock");
+var imgPaper = document.createElement("img");
+imgPaper.src = "paper.png";
+imgPaper.classList.add("icone");
+imgPaper.setAttribute("id", "paper");
+var imgScissors = document.createElement("img");
+imgScissors.src = "scissors.png";
+imgScissors.classList.add("icone");
+imgScissors.setAttribute("id", "scissors");
+var roundsCounter = 1;
+var scorePlayer = 0; 
+var scoreComputer = 0; 
+var displayScore = document.createElement("h3");
 
-        return playerNumber;
-    }
-    //random answer
-    function getRandomInteger(min, max){
-        var rand = Math.floor(Math.random() * (max - min)) + min;
-        var computerAnswer;
-        return rand;
-    }
 
-    //compare
-    const h3 = document.querySelector('h3');
-    function compare(num1, num2){
-        if(num1 === num2){
-            h3.textContent = "Draw";
+function displayButton(){       
+    document.body.appendChild(roundsButton);
+    document.body.appendChild(roundsInput);
+    roundsButton.innerHTML = "Send";
+    roundsButton.addEventListener("click", buttonClick);
+}
+
+function buttonClick(){
+    selectedRoundsNumber = document.getElementById("input").value;
+    document.body.removeChild(roundsButton);
+    document.body.removeChild(roundsInput);
+    h3.textContent = "Choose your weapon";
+    displayRounds.textContent = "Round " + roundsCounter + " / " + selectedRoundsNumber;
+    displayScore.textContent = "You " + scorePlayer + " : "+ scoreComputer + " Computer ";
+    roundParent.appendChild(displayScore);
+    roundParent.appendChild(displayRounds);
+    icones.appendChild(imgRock);
+    icones.appendChild(imgPaper);
+    icones.appendChild(imgScissors);
+    
+}
+displayButton();
+
+//game on
+function getRandomInteger(min, max){
+    var rand = Math.floor(Math.random() * (max - min)) + min;
+    var computerAnswer;
+    return rand;
+}
+        
+        imgRock.addEventListener('click', () =>{
+            compare(1, getRandomInteger(1, 4));
+            roundsCounter++;
+        });
+        
+            imgPaper.addEventListener('click', () =>{
+            compare(2, getRandomInteger(1, 4));
+            roundsCounter++;
+            
+        });
+        imgScissors.addEventListener('click', () => {
+            compare(3, getRandomInteger(1, 4));
+            roundsCounter++;
+            
+        });
+        
+        function compare(num1, num2){
+            if(num1 === num2){
+                h3.textContent = "Draw";
+            }
+            else if(num1 == 1 && num2 == 3){
+               h3.textContent = "You win, Rock beats the Scissors";
+               scorePlayer++;
+            }
+            else if(num1 == 1 && num2 == 2 ){
+               h3.textContent = "You lose, Paper beats the rock";
+               scoreComputer++;
+            }
+            else if(num1 == 2 && num2 == 1){
+              h3.textContent = "You win, Paper beats the Rock";
+              scorePlayer++;
+            }
+            else if(num1 == 2 && num2 == 3){
+               h3.textContent = "You lose, Scissors beats the Paper";
+               scoreComputer++;
+            }
+            else if(num1 == 3 && num2 == 1){
+               h3.textContent = "You lose, Rock beats the Scissors";
+               scoreComputer++;
+            }
+            else if(num1 == 3 && num2 == 2){
+               h3.textContent = "You win, Scissors beats the Paper";
+               scorePlayer++;
+            }
         }
-        else if(num1 == 1 && num2 == 3){
-           h3.textContent = "You win, Rock beats the Scissors";
-        }
-        else if(num1 == 1 && num2 == 2 ){
-           h3.textContent = "You lose, Paper beats the rock";
-        }
-        else if(num1 == 2 && num2 == 1){
-          h3.textContent = "You win, Paper beats the Rock";
-        }
-        else if(num1 == 2 && num2 == 3){
-           h3.textContent = "You lose, Scissors beats the Paper";
-        }
-        else if(num1 == 3 && num2 == 1){
-           h3.textContent = "You lose, Rock beats the Scissors";
-        }
-        else if(num1 == 3 && num2 == 2){
-           h3.textContent = "You win, Scissors beats the Paper";
-        }
-    }
+
+
+//game over
 
     
     
