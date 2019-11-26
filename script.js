@@ -2,7 +2,7 @@
 var roundsButton = document.createElement("button");
 var roundsInput = document.createElement("input");
 roundsInput.setAttribute("id", "input");
-var selectedRoundsNumber = 0;
+var selectedRoundsNumber ;
 var roundParent = document.getElementById("rounds");
 var displayRounds = document.createElement("p");
 var h3 = document.querySelector("h3");
@@ -23,9 +23,10 @@ var roundsCounter = 1;
 var scorePlayer = 0; 
 var scoreComputer = 0; 
 var displayScore = document.createElement("h3");
+var playAgain = document.createElement("button");
 
 
-function displayButton(){       
+function displayButton(){     
     document.body.appendChild(roundsButton);
     document.body.appendChild(roundsInput);
     roundsButton.innerHTML = "Send";
@@ -56,19 +57,26 @@ function getRandomInteger(min, max){
 }
         
         imgRock.addEventListener('click', () =>{
-            compare(1, getRandomInteger(1, 4));
             roundsCounter++;
+            compare(1, getRandomInteger(1, 4));
+            if(roundsCounter > selectedRoundsNumber){
+                gameOver();
+            }
         });
         
-            imgPaper.addEventListener('click', () =>{
-            compare(2, getRandomInteger(1, 4));
+        imgPaper.addEventListener('click', () =>{
             roundsCounter++;
-            
+            compare(2, getRandomInteger(1, 4));
+            if(roundsCounter > selectedRoundsNumber){
+                gameOver();
+            }
         });
         imgScissors.addEventListener('click', () => {
-            compare(3, getRandomInteger(1, 4));
             roundsCounter++;
-            
+            compare(3, getRandomInteger(1, 4));
+            if(roundsCounter > selectedRoundsNumber ){
+                gameOver();
+            }
         });
         
         function compare(num1, num2){
@@ -99,11 +107,45 @@ function getRandomInteger(min, max){
                h3.textContent = "You win, Scissors beats the Paper";
                scorePlayer++;
             }
+            displayRounds.textContent = "Round " + roundsCounter + " / " + selectedRoundsNumber;
+            displayScore.textContent = "You " + scorePlayer + " : "+ scoreComputer + " Computer ";
         }
 
 
 //game over
 
+function removeImg(){
+    icones.removeChild(imgRock); 
+    icones.removeChild(imgPaper);
+    icones.removeChild(imgScissors);
+    roundParent.removeChild(displayRounds);
+    playAgain.innerHTML = "Play again";
+    icones.appendChild(playAgain);
+    playAgain.addEventListener("click", () =>{
+        displayButton();
+        h3.textContent = "Choose the number of rounds"; 
+        roundParent.removeChild(displayScore);
+        icones.removeChild(playAgain); 
+        scoreComputer = 0; 
+        scorePlayer = 0; 
+        roundsCounter = 1; 
+    });
+}
+
+function gameOver(){
+    if(scoreComputer === scorePlayer){
+        h3.textContent = "Game Over, Draw, nobody lose!";
+        removeImg();
+    }
+    else if(scorePlayer < scoreComputer){
+        h3.textContent = "Game Over, Sorry you lose!";
+        removeImg();
+    }
+    else if(scorePlayer > scoreComputer){
+        h3.textContent = "Game Over, Congratulation you win!";
+        removeImg();
+    }
+}
     
     
     
